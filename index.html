@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body class="">
+    <div>
+      <h1 style="padding-top: 5%;" class="text-primary" id="titulo">El juego de el Ahorcado</h1>
+      <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#instrucciones">Instrucciones</button>
+      <button type="button" class="btn btn-outline-primary btn-lg" id="BotonReiniciar" onclick="reiniciarPartida();">Reiniciar</button>
+    </div>
+    <div class="principal">
+      <div class="imagenDiv">
+        <img src="img/horca.png" alt="muñeco" id="imagen" >
+      </div>
+      <div class="juegoDiv">
+        <h1 id="pista" class="text-primary"></h1>
+        <h2 class="intentosH2">
+          <span id="intentos"></span>/<span id="intentosOriginales"></span>
+        </h2>
+        <h2 id="puntuacionH2" class="text-primary"></h2>
+        <h2 id="resultado"><pre class="text-primary" style="font-size: 2em;"></pre></h2>
+        <div class="tecladoDiv">
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaq" value="Q" onclick="comprobarTecla('q');">Q</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaw" value="W" onclick="comprobarTecla('w');">W</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclae" value="E" onclick="comprobarTecla('e');">E</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclar" value="R" onclick="comprobarTecla('r');">R</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclat" value="T" onclick="comprobarTecla('t');">T</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclay" value="Y" onclick="comprobarTecla('y');">Y</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclau" value="U" onclick="comprobarTecla('u');">U</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclai" value="I" onclick="comprobarTecla('i');">I</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclao" value="O" onclick="comprobarTecla('o');">O</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclap" value="P" onclick="comprobarTecla('p');">P</button><br>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaa" value="A" onclick="comprobarTecla('a');">A</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclas" value="S" onclick="comprobarTecla('s');">S</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclad" value="D" onclick="comprobarTecla('d');">D</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaf" value="F" onclick="comprobarTecla('f');">F</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclag" value="G" onclick="comprobarTecla('g');">G</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclah" value="H" onclick="comprobarTecla('h');">H</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaj" value="J" onclick="comprobarTecla('j');">J</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclak" value="K" onclick="comprobarTecla('k');">K</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclal" value="L" onclick="comprobarTecla('l');">L</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclañ" value="Ñ" onclick="comprobarTecla('ñ');">Ñ</button><br>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclaz" value="Z" onclick="comprobarTecla('z');">Z</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclax" value="X" onclick="comprobarTecla('x');">X</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclac" value="C" onclick="comprobarTecla('c');">C</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclav" value="V" onclick="comprobarTecla('v');">V</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclab" value="B" onclick="comprobarTecla('b');">B</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclan" value="N" onclick="comprobarTecla('n');">N</button>
+          <button type="button" class="btn btn-primary mr-md-3" id="teclam" value="M" onclick="comprobarTecla('m');">M</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="instrucciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-info">
+          <div class="modal-header">
+            <center>
+            <h1 class="modal-title" id="exampleModalLabel">INSTRUCCIONES</h1>
+            </center>
+          </div>
+          <div class="modal-body">
+            <p>Dispones de 6 intentos para acertar la palabra oculta.</p>
+            <p>Según vayas pulsando las teclas se irán deshabilitando para que no pulses dos veces la misma letra.</p>
+            <p>
+              En todo momento puedes darle al botón "Reiniciar" para empezar una nueva partida, al igual que cuando
+              ganes tienes que pulsar el botón "Siguiente".
+            </p>
+            <p>
+              En caso de que le des a "Reiniciar" tu puntuación se restablecerá.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/palabras.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
